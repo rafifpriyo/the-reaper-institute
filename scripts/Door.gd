@@ -8,8 +8,10 @@ func _ready():
 	nomed = self.get_parent().get_node("Nomed")
 
 func _input(event):
-	if event.is_action_pressed('ui_select') and is_nomad_here and not nomed.opening_mind_eye:
-		$AnimationPlayer.play("opened")
+	if event.is_action_pressed('ui_select') and is_nomad_here:
+		nomed = self.get_parent().get_node("Nomed")
+		if not nomed.opening_mind_eye:
+			$AnimationPlayer.play("opened")
 
 func _next_level():
 	SceneManager.next_level(str("res://scenes/levels/" + next_scene + ".tscn"))
