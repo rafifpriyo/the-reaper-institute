@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Self/Nomed/Nomed_Eye_Open_Long1.png" type="Texture" id=1]
+[ext_resource path="res://assets/Self/Nomed/Nomed_Eye_Open_Long2.png" type="Texture" id=2]
+[ext_resource path="res://assets/Self/Nomed/Nomed_Eye_Open_Wait4.png" type="Texture" id=3]
+[ext_resource path="res://scripts/NomedAlt.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Long"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 3 ) ]
+}
+
+[node name="NomedAlts" type="Sprite"]
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Long = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="LongTimer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+
+[connection signal="timeout" from="LongTimer" to="." method="_on_LongTimer_timeout"]

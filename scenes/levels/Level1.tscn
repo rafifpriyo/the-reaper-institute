@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Platform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Nomed.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/Level.gd" type="Script" id=5]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Platform" parent="." instance=ExtResource( 1 )]
+position = Vector2( 524, 563 )
+scale = Vector2( 15, 1 )
+
+[node name="Nomed" parent="." instance=ExtResource( 2 )]
+position = Vector2( 62, 460 )
+
+[node name="Door" parent="." instance=ExtResource( 4 )]
+position = Vector2( 872, 493 )
+next_scene = "Level2"

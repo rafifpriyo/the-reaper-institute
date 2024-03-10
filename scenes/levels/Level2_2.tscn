@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Platform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Level.gd" type="Script" id=2]
+[ext_resource path="res://scenes/MoveSceneHorizontal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Door.tscn" type="PackedScene" id=4]
+
+[node name="Level2_2" type="Node2D"]
+script = ExtResource( 2 )
+mind_eye_world = "Level2_2Alt"
+
+[node name="Platform" parent="." instance=ExtResource( 1 )]
+position = Vector2( 524, 563 )
+scale = Vector2( 15, 1 )
+
+[node name="MoveSceneHorizontal" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1, 0 )
+move_to_scene = "Level2"
+is_right_screen = false
+
+[node name="Door" parent="." instance=ExtResource( 4 )]
+position = Vector2( 908, 492 )
+next_scene = "Level3"
