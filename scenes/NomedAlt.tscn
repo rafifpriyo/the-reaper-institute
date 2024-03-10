@@ -37,6 +37,7 @@ tracks/0/keys = {
 }
 
 [node name="NomedAlts" type="Sprite"]
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 

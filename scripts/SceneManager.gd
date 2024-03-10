@@ -7,6 +7,25 @@ func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
+func restart_level(nomed_position, nomed_path):
+	call_deferred("_deferred_restart_level", nomed_position, nomed_path)
+	
+func _deferred_restart_level(nomed_position, nomed_path):
+	var nomed: KinematicBody2D = current_scene.get_node('Nomed')
+	
+	# It is now safe to remove the current scene.
+	current_scene.remove_child(nomed)
+	nomed.queue_free()
+	
+	# Load the new scene.
+	var s = ResourceLoader.load(nomed_path)
+	
+	var new_nomed = s.instance()
+	new_nomed.global_position = nomed_position
+	
+	current_scene.add_child(new_nomed)
+	new_nomed.name = "Nomed"
+	
 func next_level(path):
 	
 	call_deferred("_deferred_next_level", path)

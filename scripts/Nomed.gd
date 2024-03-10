@@ -17,7 +17,9 @@ const UP = Vector2(0, -1)
 
 var velocity = Vector2()
 
-var opening_mind_eye = false
+export (bool) var allowed_opening_eye = true
+export (bool) var opening_mind_eye = false
+export (bool) var entering_door = false
 
 func get_input():
 	velocity.x = 0
@@ -62,12 +64,17 @@ func get_input():
 	#	_walk_sprite.play('idle_left')
 	
 func basic_animation(velocity):
-	if velocity.y < 0:
-		$AnimationPlayer.play("Jump")
-	elif velocity.x != 0 and is_on_floor():
-		$AnimationPlayer.play("Walk")
-	elif not opening_mind_eye:
-		$AnimationPlayer.play("Idle")
+	if entering_door:
+		$AnimationPlayer.play("EnterDoor")
+	else:
+		self.scale.x = 0.75
+		self.scale.y = 0.75
+		if velocity.y < 0:
+			$AnimationPlayer.play("Jump")
+		elif velocity.x != 0 and is_on_floor():
+			$AnimationPlayer.play("Walk")
+		elif not opening_mind_eye:
+			$AnimationPlayer.play("Idle")
 
 func check_eye(velocity):
 	if Input.is_action_pressed("eye_open") and velocity.x == 0 and velocity.y >= 0 and is_on_floor():
@@ -99,7 +106,19 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.y  += delta * GRAVITY
-	get_input()
+	if not entering_door:
+		get_input()
 	basic_animation(velocity)
-	check_eye(velocity)
+	if not entering_door and allowed_opening_eye:
+		check_eye(velocity)
 	velocity = move_and_slide(velocity, UP)
+
+
+func _on_NoEyeArea_body_entered(body):
+	if body.get_name() == "Nomed":
+		allowed_opening_eye = false
+
+
+func _on_NoEyeArea_body_exited(body):
+	if body.get_name() == "Nomed":
+		allowed_opening_eye = true
