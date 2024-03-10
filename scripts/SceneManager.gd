@@ -1,11 +1,14 @@
 extends Node
 
+var current_level = null
 var current_scene = null
 var mind_eye_world = null
+var have_changed = false
 
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
+	current_level = current_scene.name
 	
 func restart_level(nomed_position, nomed_path):
 	call_deferred("_deferred_restart_level", nomed_position, nomed_path)
@@ -25,6 +28,24 @@ func _deferred_restart_level(nomed_position, nomed_path):
 	
 	current_scene.add_child(new_nomed)
 	new_nomed.name = "Nomed"
+
+func death():
+	call_deferred("_deferred_death")
+	
+func _deferred_death():
+	current_scene.queue_free()
+	
+	# Load the new scene.
+	var s = ResourceLoader.load("res://scenes/levels/" + current_level + ".tscn")
+
+	# Instance the new scene.
+	current_scene = s.instance()
+	
+	# Add it to the active scene, as child of root.
+	get_tree().root.add_child(current_scene)
+
+	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
+	get_tree().current_scene = current_scene
 	
 func next_level(path):
 	
@@ -38,6 +59,7 @@ func _deferred_next_level(path):
 
 	# Instance the new scene.
 	current_scene = s.instance()
+	current_level = current_scene.name
 	
 	# Add it to the active scene, as child of root.
 	get_tree().root.add_child(current_scene)
@@ -54,13 +76,18 @@ func goto_scene(path, nomed_translation: Vector2):
 
 	# The solution is to defer the load to a later time, when
 	# we can be sure that no code from the current scene is running:
-
-	call_deferred("_deferred_goto_scene", path, nomed_translation)
+	if have_changed:
+		return
+	else:
+		have_changed = true
+		call_deferred("_deferred_goto_scene", path, nomed_translation)
 
 
 func _deferred_goto_scene(path, nomed_translation: Vector2):
 	var nomed: KinematicBody2D = current_scene.get_node('Nomed')
-	nomed.global_position = nomed.global_position + nomed_translation
+	var new_global_position = nomed.global_position + nomed_translation
+	print(nomed.global_position)
+	have_changed = true
 	
 	# It is now safe to remove the current scene.
 	current_scene.remove_child(nomed)
@@ -77,6 +104,7 @@ func _deferred_goto_scene(path, nomed_translation: Vector2):
 		var old_nomad = current_scene.get_node('Nomed')
 		current_scene.remove_child(old_nomad)
 		old_nomad.free()
+	nomed.global_position = new_global_position
 	current_scene.add_child(nomed)
 	nomed.name = "Nomed"
 	
@@ -88,6 +116,8 @@ func _deferred_goto_scene(path, nomed_translation: Vector2):
 
 	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
 	get_tree().current_scene = current_scene
+	
+	have_changed = false
 	
 func goto_mind_eye_world(path):
 	call_deferred("_deferred_goto_mind_eye_world", path)

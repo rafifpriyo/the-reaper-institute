@@ -99,7 +99,7 @@ tracks/2/keys = {
 }
 
 [node name="Door" type="Area2D"]
-scale = Vector2( 0.75, 0.57 )
+scale = Vector2( 0.75, 0.75 )
 collision_layer = 2
 script = ExtResource( 2 )
 

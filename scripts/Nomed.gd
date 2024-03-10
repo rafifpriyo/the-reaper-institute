@@ -20,6 +20,7 @@ var velocity = Vector2()
 export (bool) var allowed_opening_eye = true
 export (bool) var opening_mind_eye = false
 export (bool) var entering_door = false
+export (bool) var death_flag = false
 
 func get_input():
 	velocity.x = 0
@@ -95,6 +96,14 @@ func _on_EyeTimer_timeout():
 	var path_to_mind_eye_world = self.get_parent().mind_eye_world
 	SceneManager.goto_mind_eye_world(str("res://scenes/levels/" + path_to_mind_eye_world + ".tscn"))
 
+func check_death():
+	if death_flag and is_on_floor():
+		call_deferred("_deferred_death")
+		
+func _deferred_death():
+	print("death")
+	SceneManager.death()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -111,6 +120,7 @@ func _physics_process(delta):
 	basic_animation(velocity)
 	if not entering_door and allowed_opening_eye:
 		check_eye(velocity)
+	check_death()
 	velocity = move_and_slide(velocity, UP)
 
 
