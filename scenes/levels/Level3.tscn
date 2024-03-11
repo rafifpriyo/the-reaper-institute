@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/PlatformNormalGhost.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Nomed.tscn" type="PackedScene" id=2]
@@ -8,10 +8,14 @@
 [ext_resource path="res://scenes/RestartArea.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/MoveSceneHorizontal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/NoEyeArea.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/DeathArea.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/DeathAreaDark.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/DeathAreaRed.tscn" type="PackedScene" id=10]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 546.0, 626.0 ]
+}
 mind_eye_world = "Level3Alt"
 
 [node name="Nomed" parent="." instance=ExtResource( 2 )]
@@ -48,11 +52,11 @@ position = Vector2( 1, 751 )
 position = Vector2( 478, 0 )
 scale = Vector2( 16, 1 )
 
-[node name="DeathArea" parent="." instance=ExtResource( 9 )]
+[node name="DeathAreaDark" parent="." instance=ExtResource( 9 )]
 position = Vector2( 738, 625 )
 scale = Vector2( 2, 1 )
 
-[node name="DeathArea2" parent="." instance=ExtResource( 9 )]
+[node name="DeathAreaRed" parent="." instance=ExtResource( 10 )]
 position = Vector2( 737, 720 )
 scale = Vector2( 8, 1 )
 

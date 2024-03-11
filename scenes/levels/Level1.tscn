@@ -47,4 +47,3 @@ position = Vector2( 478, 0 )
 scale = Vector2( 16, 1 )
 
 [connection signal="body_entered" from="RestartArea" to="RestartArea" method="_on_RestartArea_body_entered"]
-[connection signal="body_exited" from="NoEyeArea" to="NoEyeArea" method="_on_NoEyeArea_body_exited"]

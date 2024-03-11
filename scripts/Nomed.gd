@@ -20,7 +20,8 @@ var velocity = Vector2()
 export (bool) var allowed_opening_eye = true
 export (bool) var opening_mind_eye = false
 export (bool) var entering_door = false
-export (bool) var death_flag = false
+var death_flag = false
+export (String) var death_name = "None"
 
 func get_input():
 	velocity.x = 0
@@ -87,20 +88,27 @@ func check_eye(velocity):
 	if Input.is_action_just_released("eye_open") or (opening_mind_eye and (velocity.x != 0 or velocity.y < 0)):
 		$EyeTimer.stop()
 		$AnimationPlayer.stop()
+		$AudioStreamPlayer.play()
 		opening_mind_eye = false
 		
 		if not self.get_parent().visible:
 			SceneManager.shutting_mind_eye_world()
 		
 func _on_EyeTimer_timeout():
+	$AudioStreamPlayer.stop()
 	var path_to_mind_eye_world = self.get_parent().mind_eye_world
 	SceneManager.goto_mind_eye_world(str("res://scenes/levels/" + path_to_mind_eye_world + ".tscn"))
 
 func check_death():
-	if death_flag and is_on_floor():
-		call_deferred("_deferred_death")
+	if not death_name == "None":
+		if death_name == "Dark" and is_on_floor():
+			death_flag = true
+			$AnimationPlayer.play("DeathDark")
+		elif death_name == "Red" and is_on_floor():
+			death_flag = true
+			$AnimationPlayer.play("DeathRed")
 		
-func _deferred_death():
+func death():
 	print("death")
 	SceneManager.death()
 
@@ -115,10 +123,11 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.y  += delta * GRAVITY
-	if not entering_door:
+	if not entering_door and not death_flag:
 		get_input()
-	basic_animation(velocity)
-	if not entering_door and allowed_opening_eye:
+	if not death_flag:
+		basic_animation(velocity)
+	if not entering_door and not death_flag and allowed_opening_eye:
 		check_eye(velocity)
 	check_death()
 	velocity = move_and_slide(velocity, UP)

@@ -1,5 +1,7 @@
 extends Node
 
+var rng
+
 var current_level = null
 var current_scene = null
 var mind_eye_world = null
@@ -9,6 +11,7 @@ func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 	current_level = current_scene.name
+	rng = RandomNumberGenerator.new()
 	
 func restart_level(nomed_position, nomed_path):
 	call_deferred("_deferred_restart_level", nomed_position, nomed_path)
