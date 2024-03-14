@@ -17,7 +17,7 @@ position = Vector2( 123, 631 )
 
 [node name="Door" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1228, 632 )
-next_scene = "Level2"
+next_scene = "Story2"
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 0.25, 0.25 )

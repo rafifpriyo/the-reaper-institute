@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fonts/Piedra/Piedra-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/Jolly_Lodger/JollyLodger-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/Story.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 26
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 28
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[node name="Story3End" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 614.0 ],
+"_edit_vertical_guides_": [ 1167.0 ]
+}
+move_to_scene = "Ending"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 200.0
+margin_top = 100.0
+margin_right = 1166.0
+margin_bottom = 668.0
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "\"Are you Sam\"
+
+\"Yes you are right, my name is Mas, what's your name\"
+
+\"Me, i am [b]Nomed[/b], long time no see Sam\"
+
+\"Oh hello [b][fade start=0 length=4]D----[/fade][/b], but i am not supposed to meet you until next year isn't it?\"
+
+\"Next year, what are you talking about Sam\"
+
+\"I don't know, just my feeling, so why are coming from the right of the room. We should go to the next room. Come with me\"
+
+
+-it is intentional-"
+text = "\"Are you Sam\"
+
+\"Yes you are right, my name is Mas, what's your name\"
+
+\"Me, i am Nomed, long time no see Sam\"
+
+\"Oh hello D----, but i am not supposed to meet you until next year isn't it?\"
+
+\"Next year, what are you talking about Sam\"
+
+\"I don't know, just my feeling, so why are coming from the right of the room. We should go to the next room. Come with me\"
+
+
+-it is intentional-"
+deselect_on_focus_loss_enabled = false
+
+[node name="Space" type="Label" parent="."]
+margin_left = 1101.0
+margin_top = 582.0
+margin_right = 1161.0
+margin_bottom = 618.0
+theme = SubResource( 4 )
+text = "[Space]"

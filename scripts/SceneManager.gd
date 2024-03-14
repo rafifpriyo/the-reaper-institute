@@ -136,7 +136,7 @@ func _deferred_goto_mind_eye_world(path):
 	var nomed_alt = ResourceLoader.load(str("res://scenes/" + "NomedAlt" + ".tscn"))
 	var nomed_sprite = nomed_alt.instance()
 	nomed_sprite.global_position = nomed.global_position
-	nomed_sprite.flip_h = nomed.get_node("Sprite").flip_h
+	nomed_sprite.get_node("Sprite").flip_h = nomed.get_node("Sprite").flip_h
 	nomed_sprite.name = "NomedAlt"
 	
 	mind_eye_world.add_child(nomed_sprite)

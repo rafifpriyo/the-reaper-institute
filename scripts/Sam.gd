@@ -6,26 +6,22 @@ var is_nomad_here = false
 
 func _ready():
 	nomed = self.get_parent().get_node("Nomed")
+	$AnimationPlayer.play("idle")
+	
 
 func _input(event):
 	if event.is_action_pressed('ui_select') and is_nomad_here:
 		nomed = self.get_parent().get_node("Nomed")
-		if not nomed.opening_mind_eye:
-			$AnimationPlayer.play("opened")
+		_next_level()
 
 func _next_level():
 	SceneManager.next_level(str("res://scenes/stories/" + next_scene + ".tscn"))
 
-func _nomed_enter_door_animation():
-	nomed.entering_door = true
-
-func _on_Door_body_entered(body):
+func _on_Sam_body_entered(body):
 	if body.get_name() == "Nomed":
-		$AnimationPlayer.play("half_opened")
 		is_nomad_here = true
 
 
-func _on_Door_body_exited(body):
+func _on_Sam_body_exited(body):
 	if body.get_name() == "Nomed":
-		$AnimationPlayer.play("idle")
 		is_nomad_here = false

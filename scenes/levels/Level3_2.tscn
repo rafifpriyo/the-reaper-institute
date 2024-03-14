@@ -16,7 +16,7 @@ mind_eye_world = "Level3_2Alt"
 
 [node name="MoveSceneHorizontal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1345, 0 )
-move_to_scene = "Level3"
+move_to_scene = "Level3_3"
 
 [node name="MoveSceneHorizontal2" parent="." instance=ExtResource( 7 )]
 position = Vector2( -2, 0 )

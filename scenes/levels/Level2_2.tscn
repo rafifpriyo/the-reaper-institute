@@ -47,6 +47,6 @@ scale = Vector2( 16, 1 )
 
 [node name="Door" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1195, 605 )
-next_scene = "Level3"
+next_scene = "Story3"
 
 [connection signal="body_entered" from="RestartArea" to="RestartArea" method="_on_RestartArea_body_entered"]

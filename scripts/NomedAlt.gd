@@ -1,4 +1,4 @@
-extends Sprite
+extends Area2D
 
 var bgm_index = 0
 var bgms = ["KnockKnock", "Laugh", "Round", "Shu", "Sleep", "Soothe"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/Story.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Piedra/Piedra-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/Jolly_Lodger/JollyLodger-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 26
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 28
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[node name="Story1" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 667.0 ],
+"_edit_vertical_guides_": [ 1167.0 ]
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 200.0
+margin_top = 100.0
+margin_right = 1166.0
+margin_bottom = 668.0
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "One day, a new revolutionary institute named the [b]superhero[/b] institute appeared in the world. It's claim can change every children to a [b]superhero[/b]. Surprisingly, many children ask their family to be admitted to this institute.
+
+But like any other institute, the admission proccess is strict. But fortunately our young hero here, Nomed, passed with flying color.
+
+\"Mom, i passed the exam mom. I am so happy.\"
+
+\"Be well my child, we cannot see you again after this, reach your dream my child.\"
+
+\"Yes mom, i will become the most successfull [b][fade start=0 length=5]her---[/fade][/b]\"
+
+
+
+-it is intentional-"
+text = "One day, a new revolutionary institute named the superhero institute appeared in the world. It's claim can change every children to a superhero. Surprisingly, many children ask their family to be admitted to this institute.
+
+But like any other institute, the admission proccess is strict. But fortunately our young hero here, Nomed, passed with flying color.
+
+\"Mom, i passed the exam mom. I am so happy.\"
+
+\"Be well my child, we cannot see you again after this, reach your dream my child.\"
+
+\"Yes mom, i will become the most successfull her---\"
+
+
+
+-it is intentional-"
+
+[node name="Space" type="Label" parent="."]
+margin_left = 1098.0
+margin_top = 626.0
+margin_right = 1158.0
+margin_bottom = 662.0
+theme = SubResource( 4 )
+text = "[Space]"
