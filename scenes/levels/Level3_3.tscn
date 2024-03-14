@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/Sam.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=2]
 [ext_resource path="res://scenes/MoveSceneHorizontal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/Jolly_Lodger/JollyLodger-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/Platforms.tres" type="TileSet" id=5]
 [ext_resource path="res://scenes/backgrounds/background1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/RestartArea.tscn" type="PackedScene" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 4 )
 
 [node name="Level3_3" type="Node2D"]
 script = ExtResource( 2 )
@@ -34,6 +39,24 @@ position = Vector2( 1, 751 )
 visible = false
 position = Vector2( 943, 659 )
 next_scene = "Story3End"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 47.0
+margin_top = 15.0
+margin_right = 463.0
+margin_bottom = 584.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "I feel a presense
+
+I need to look with my third eye
+
+And maybe i can interact with it by using space"
+text = "I feel a presense
+
+I need to look with my third eye
+
+And maybe i can interact with it by using space"
 
 [connection signal="body_entered" from="RestartArea" to="RestartArea" method="_on_RestartArea_body_entered"]
 [connection signal="body_entered" from="Sam" to="Sam" method="_on_Sam_body_entered"]

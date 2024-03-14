@@ -8,6 +8,7 @@ extents = Vector2( 55, 55.5 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
+length = 2.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -16,10 +17,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -5 ), Vector2( 0, 5 ), Vector2( 0, -5 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 10 ), Vector2( 0, 0 ), Vector2( 0, -10 ), Vector2( 0, 0 ) ]
 }
 
 [node name="Sam" type="Area2D"]

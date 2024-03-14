@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/PlatformNormalGhost.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Nomed.tscn" type="PackedScene" id=2]
@@ -10,6 +10,11 @@
 [ext_resource path="res://scenes/NoEyeArea.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/DeathAreaDark.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/DeathAreaRed.tscn" type="PackedScene" id=10]
+[ext_resource path="res://fonts/Jolly_Lodger/JollyLodger-Regular.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 11 )
 
 [node name="Level3" type="Node2D"]
 script = ExtResource( 4 )
@@ -59,5 +64,19 @@ scale = Vector2( 2, 1 )
 [node name="DeathAreaRed" parent="." instance=ExtResource( 10 )]
 position = Vector2( 737, 720 )
 scale = Vector2( 8, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 47.0
+margin_top = 15.0
+margin_right = 463.0
+margin_bottom = 584.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Why do i remember about Sam all of a sudden
+
+My instinct tell me i cannot step on that black and red tile over there"
+text = "Why do i remember about Sam all of a sudden
+
+My instinct tell me i cannot step on that black and red tile over there"
 
 [connection signal="body_entered" from="RestartArea" to="RestartArea" method="_on_RestartArea_body_entered"]

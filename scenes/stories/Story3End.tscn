@@ -41,7 +41,7 @@ bbcode_text = "\"Are you Sam\"
 
 \"Yes you are right, my name is Mas, what's your name\"
 
-\"Me, i am [b]Nomed[/b], long time no see Sam\"
+\"Me? i am [b]Nomed[/b], long time no see Sam\"
 
 \"Oh hello [b][fade start=0 length=4]D----[/fade][/b], but i am not supposed to meet you until next year isn't it?\"
 
@@ -55,7 +55,7 @@ text = "\"Are you Sam\"
 
 \"Yes you are right, my name is Mas, what's your name\"
 
-\"Me, i am Nomed, long time no see Sam\"
+\"Me? i am Nomed, long time no see Sam\"
 
 \"Oh hello D----, but i am not supposed to meet you until next year isn't it?\"
 

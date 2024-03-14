@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/PlatformNormalGhost.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Nomed.tscn" type="PackedScene" id=2]
@@ -8,6 +8,11 @@
 [ext_resource path="res://scenes/backgrounds/background1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/RestartArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/NoEyeArea.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fonts/Jolly_Lodger/JollyLodger-Regular.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 9 )
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 4 )
@@ -46,5 +51,15 @@ position = Vector2( 1, 751 )
 [node name="NoEyeArea" parent="." instance=ExtResource( 8 )]
 position = Vector2( 478, 0 )
 scale = Vector2( 16, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 47.0
+margin_top = 15.0
+margin_right = 463.0
+margin_bottom = 584.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "I cannot go back, that's strange"
+text = "I cannot go back, that's strange"
 
 [connection signal="body_entered" from="RestartArea" to="RestartArea" method="_on_RestartArea_body_entered"]
