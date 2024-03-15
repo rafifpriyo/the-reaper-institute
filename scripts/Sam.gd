@@ -2,7 +2,7 @@ extends Area2D
 
 export var next_scene: String = "Level1"
 var nomed
-var is_nomad_here = false
+var is_nomed_here = false
 
 func _ready():
 	nomed = self.get_parent().get_node("Nomed")
@@ -10,7 +10,7 @@ func _ready():
 	
 
 func _input(event):
-	if event.is_action_pressed('ui_select') and is_nomad_here:
+	if event.is_action_pressed('ui_select') and is_nomed_here:
 		nomed = self.get_parent().get_node("Nomed")
 		_next_level()
 
@@ -19,9 +19,9 @@ func _next_level():
 
 func _on_Sam_body_entered(body):
 	if body.get_name() == "Nomed":
-		is_nomad_here = true
+		is_nomed_here = true
 
 
 func _on_Sam_body_exited(body):
 	if body.get_name() == "Nomed":
-		is_nomad_here = false
+		is_nomed_here = false

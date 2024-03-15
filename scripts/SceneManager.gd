@@ -8,6 +8,9 @@ var mind_eye_world = null
 var have_changed = false
 
 func _ready():
+	var root = get_tree().root
+	current_scene = root.get_child(root.get_child_count() - 1)
+	current_level = current_scene.name
 	rng = RandomNumberGenerator.new()
 	
 func start(path, node_to_free):
@@ -70,6 +73,9 @@ func next_level(path):
 	call_deferred("_deferred_next_level", path)
 	
 func _deferred_next_level(path):
+	if mind_eye_world != null:
+		shutting_mind_eye_world()
+	
 	current_scene.queue_free()
 	
 	# Load the new scene.
@@ -165,6 +171,7 @@ func shutting_mind_eye_world():
 func _deferred_shutting_mind_eye_world():
 	mind_eye_world.get_node("NomedAlt").get_node("AnimationPlayer").stop()
 	mind_eye_world.queue_free()
+	mind_eye_world = null
 	
 	current_scene.visible = true
 	
