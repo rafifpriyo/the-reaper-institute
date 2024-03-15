@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Sam.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 [ext_resource path="res://assets/Platforms.tres" type="TileSet" id=5]
 [ext_resource path="res://scenes/backgrounds/background1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/RestartArea.tscn" type="PackedScene" id=7]
+[ext_resource path="res://fonts/Piedra/Piedra-Regular.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=2]
+size = 26
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 28
@@ -45,13 +50,14 @@ margin_left = 47.0
 margin_top = 15.0
 margin_right = 463.0
 margin_bottom = 584.0
+custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "I feel a presense
 
 I need to look with my third eye
 
-And maybe i can interact with it by using space"
+And maybe i can interact with it by using [b]space[/b]"
 text = "I feel a presense
 
 I need to look with my third eye

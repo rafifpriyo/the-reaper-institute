@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="The Reaper Institute"
-run/main_scene="res://scenes/levels/Level1.tscn"
+run/main_scene="res://scenes/HomePage.tscn"
 config/icon="res://assets/icon.png"
 
 [autoload]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/Platforms.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Nomed.tscn" type="PackedScene" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://scenes/RestartArea.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/NoEyeArea.tscn" type="PackedScene" id=8]
 [ext_resource path="res://fonts/Jolly_Lodger/JollyLodger-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://fonts/Piedra/Piedra-Regular.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="DynamicFont" id=2]
+size = 26
+font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 28
@@ -56,17 +61,18 @@ margin_left = 47.0
 margin_top = 15.0
 margin_right = 463.0
 margin_bottom = 584.0
+custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "What a strange dream i have
 
 I feel like i need to go to that door
 
-Maybe i need to look with my third eye by holding the E button
+Maybe i need to look with my third eye by holding the [b]E button[/b]
 
 But my instinct tell me, i mustn't use my third eye in that purplish fog
 
-After that, i can interact with the door with space"
+After that, i can interact with the door with [b]space[/b]"
 text = "What a strange dream i have
 
 I feel like i need to go to that door

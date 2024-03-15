@@ -59,7 +59,11 @@ margin_right = 463.0
 margin_bottom = 584.0
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "I cannot go back, that's strange"
-text = "I cannot go back, that's strange"
+bbcode_text = "I cannot go back, that's strange
+
+I need to go to the other side of this room"
+text = "I cannot go back, that's strange
+
+I need to go to the other side of this room"
 
 [connection signal="body_entered" from="RestartArea" to="RestartArea" method="_on_RestartArea_body_entered"]

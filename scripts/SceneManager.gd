@@ -8,10 +8,25 @@ var mind_eye_world = null
 var have_changed = false
 
 func _ready():
-	var root = get_tree().root
-	current_scene = root.get_child(root.get_child_count() - 1)
-	current_level = current_scene.name
 	rng = RandomNumberGenerator.new()
+	
+func start(path, node_to_free):
+	call_deferred("_deferred_start", path, node_to_free)
+	
+func _deferred_start(path, node_to_free):
+	node_to_free.queue_free()
+	
+	var s = ResourceLoader.load(path)
+
+	# Instance the new scene.
+	current_scene = s.instance()
+	current_level = current_scene.name
+	
+	# Add it to the active scene, as child of root.
+	get_tree().root.add_child(current_scene)
+
+	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
+	get_tree().current_scene = current_scene
 	
 func restart_level(nomed_position, nomed_path):
 	call_deferred("_deferred_restart_level", nomed_position, nomed_path)
@@ -85,11 +100,9 @@ func goto_scene(path, nomed_translation: Vector2):
 		have_changed = true
 		call_deferred("_deferred_goto_scene", path, nomed_translation)
 
-
 func _deferred_goto_scene(path, nomed_translation: Vector2):
 	var nomed: KinematicBody2D = current_scene.get_node('Nomed')
 	var new_global_position = nomed.global_position + nomed_translation
-	print(nomed.global_position)
 	have_changed = true
 	
 	# It is now safe to remove the current scene.
@@ -154,3 +167,25 @@ func _deferred_shutting_mind_eye_world():
 	mind_eye_world.queue_free()
 	
 	current_scene.visible = true
+	
+func go_to_homepage():
+	call_deferred("_deferred_go_to_homepage")
+	
+func _deferred_go_to_homepage():
+	current_scene.queue_free()
+	
+	var s = ResourceLoader.load(str("res://scenes/" + "HomePage" + ".tscn"))
+
+	# Instance the new scene.
+	var homepage = s.instance()
+	
+	# Add it to the active scene, as child of root.
+	get_tree().root.add_child(homepage)
+	
+	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
+	get_tree().current_scene = homepage
+	
+	current_level = null
+	current_scene = null
+	mind_eye_world = null
+	have_changed = false
